@@ -7,7 +7,6 @@
 		{{ route.published_date }}
 		</div>
 		<h1><a href="{% url 'route_detail' pk=route.pk %}">{{ route.title }}</a></h1>
-		<p>{{ route.text|linebreaksbr }}</p>
 	</div>
 	{% endfor %}
 {% endblock content %}

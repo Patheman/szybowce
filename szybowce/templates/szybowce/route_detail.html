@@ -9,6 +9,12 @@
         {% endif %}
 	<a class="btn btn-default" href="{% url 'route_edit' pk=route.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 	<h1>{{ route.title }}</h1>
-        <p>{{ route.text|linebreaksbr }}</p>
-    </div>
+	<h3> Start: </h3>
+	<p> {{ route.start_lat|linebreaksbr }}</p>
+        <p> {{ route.start_long|linebreaksbr }}</p>
+        <h3> Koniec: </h3> 
+	<p> {{ route.end_lat|linebreaksbr }}</p>
+	<p> {{ route.end_long|linebreaksbr }}</p>	    
+
+</div>
 {% endblock %}
