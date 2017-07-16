@@ -1,0 +1,14 @@
+{% extends 'szybowce/base.html' %}
+
+{% block content %}
+    <div class="route">
+        {% if route.published_date %}
+            <div class="date">
+                {{ route.published_date }}
+            </div>
+        {% endif %}
+	<a class="btn btn-default" href="{% url 'route_edit' pk=route.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	<h1>{{ route.title }}</h1>
+        <p>{{ route.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}
