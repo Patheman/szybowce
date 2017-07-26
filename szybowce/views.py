@@ -1,8 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Route
+from .models import Weather
+from .forms import WeatherForm
 from .forms import RouteForm
 from django.shortcuts import redirect
+#from .find_location import run
+
 
 # Create your views here.
 
@@ -15,7 +19,9 @@ def route_list(request):
 def route_detail(request, pk):
 
     route = get_object_or_404(Route, pk=pk)
+    #return run()
     return render(request, 'szybowce/route_detail.html', {'route': route})
+    
 
 
 def route_new(request):
@@ -31,6 +37,7 @@ def route_new(request):
     else:
         form = RouteForm()
     return render(request, 'szybowce/route_edit.html', {'form': form})
+
 
 
 def route_edit(request, pk):

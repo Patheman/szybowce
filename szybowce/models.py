@@ -33,9 +33,9 @@ class Route(models.Model):
 
 class Weather(models.Model):
     
-    wind = models.IntegerField()
-    temparature = models.IntegerField()
-    pressure = models.IntegerField()
+    wind = models.FloatField()
+    temperature = models.FloatField()
+    pressure = models.FloatField()
     latitude = models.FloatField()
     longitude = models.FloatField()
     
