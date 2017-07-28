@@ -51,3 +51,37 @@ h1, h2, h3, h4 {
 .route h1 a, .route h1 a:visited {
     color: #000000;
 }
+
+
+#map {
+   height: 60%;
+   width: 60%;
+   float: right;
+   margin-right: 10px;
+ }
+
+#leftPanel {
+
+   height: 50%;
+   width: 20%;
+   float: left;
+   margin-left: 10px;
+ }
+
+#serachPanel {
+   position: relative;
+   height: 50%;
+   width: 100%;
+  }
+
+input{
+   color: red;
+   font: 13px sans-serif;
+ }
+
+ /* Optional: Makes the sample page fill the window. */
+ html, body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+ }

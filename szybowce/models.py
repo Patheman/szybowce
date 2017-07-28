@@ -8,12 +8,17 @@ from django.utils import timezone
 
 class Route(models.Model):
     
-    start_lat = models.FloatField()     #   the latitude you start from
-    start_long = models.FloatField()    #   the longitude
-    
-    end_lat = models.FloatField()
-    end_long = models.FloatField()
-    
+    position1 = models.CharField(max_length=200)     #   the latitude and longitude you start from
+    position2 = models.CharField(max_length=200)     
+    position3 = models.CharField(max_length=200)     
+    position4 = models.CharField(max_length=200)
+    position5 = models.CharField(max_length=200)
+    position6 = models.CharField(max_length=200)
+    position7 = models.CharField(max_length=200)
+    position8 = models.CharField(max_length=200)
+    position9 = models.CharField(max_length=200)
+    position10= models.CharField(max_length=200)
+    heading = models.CharField(max_length=200)    #   the angle of the route    
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     created_date = models.DateTimeField(

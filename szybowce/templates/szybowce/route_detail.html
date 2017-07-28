@@ -11,13 +11,18 @@
 	<a class="btn btn-default" href="{% url 'route_edit' pk=route.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 	<h1>{{ route.title }}</h1>
 	<h3> Start: </h3>
-	<p> {{ route.start_lat|linebreaksbr }}</p>
-        <p> {{ route.start_long|linebreaksbr }}</p>
+	<p> {{ route.position1|linebreaksbr }}</p>
+	<p> {{ route.position2|linebreaksbr }}</p>
+	<p> {{ route.position3|linebreaksbr }}</p>
+	<p> {{ route.position4|linebreaksbr }}</p>
+	<p> {{ route.position5|linebreaksbr }}</p>
+	<p> {{ route.position6|linebreaksbr }}</p>
+	<p> {{ route.position7|linebreaksbr }}</p>
+	<p> {{ route.position8|linebreaksbr }}</p>
+	<p> {{ route.position9|linebreaksbr }}</p>
         <h3> Koniec: </h3> 
-	<p> {{ route.end_lat|linebreaksbr }}</p>
-	<p> {{ route.end_long|linebreaksbr }}</p>	    
+	<p> {{ route.position10|linebreaksbr }}</p>
 
-	<h2>Dokonaj zmiany warunków pogodowych:</h2>
 
 </div>
 {% endblock %}

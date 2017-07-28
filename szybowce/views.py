@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 
 # Create your views here.
 
+
 def route_list(request):
 
     routes = Route.objects.filter(published_date__lte = timezone.now()).order_by('published_date')

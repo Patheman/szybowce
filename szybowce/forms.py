@@ -8,7 +8,12 @@ class RouteForm(forms.ModelForm):
 
     class Meta:
         model = Route
-        fields = ('title', 'start_lat', 'start_long', 'end_lat', 'end_long',)
+        fields = ('title',
+                  'position1', 'position2', 'position3',
+                  'position4', 'position5', 'position6',
+                  'position7', 'position8', 'position9',
+                  'position10',
+                  'heading',)
 
 
 class WeatherForm(forms.ModelForm):
