@@ -17,6 +17,7 @@ wyłuskanie pozycji:	216   var path = [marker1.getPosition(), marker2.getPositio
 
     <h1>Nowa trasa lotu</h1>
 
+     <div id="map"></div>
 
     <form method="POST" class="route-form" id="route">{% csrf_token %}
         
@@ -60,13 +61,10 @@ wyłuskanie pozycji:	216   var path = [marker1.getPosition(), marker2.getPositio
    <div id="floating-panel">
        <input id="address" type="textbox" value="EPZP">
        <br><input id="submit" type="button" value="Geocode">
-       <br>Punkt 1(test): <input type="text" readonly id="id_position1">
-       <br>Punkt 2(test): <input type="text" readonly id="id_position3">
-       <br>Kąt(test): <input type="text" readonly id="heading">
 
      </div>
      </div> 
-     <div id="map"></div>
+
 
 
      <script>
@@ -227,17 +225,17 @@ wyłuskanie pozycji:	216   var path = [marker1.getPosition(), marker2.getPositio
 
 
      function addElement(number,marker) {
-       var z = document.createElement("div");
-                 z.id=number;
-         var x = document.createElement("INPUT");
-         var y = document.createElement("INPUT");
-         x.id="pozycja"+number;
-         y.id="odleglosc"+number;
-         var para = document.createElement("P");
-     var t = document.createTextNode("Punkt " +number);
-     para.appendChild(t);
-     x.setAttribute("type", "text");
-     x.setAttribute("value", "Hello World!");
+     	var z = document.createElement("div");
+     	z.id=number;
+     	var x = document.createElement("INPUT");
+     	var y = document.createElement("INPUT");
+     	x.id="pozycja"+number;
+     	y.id="odleglosc"+number;
+     	var para = document.createElement("P");
+     	var t = document.createTextNode("Punkt " +number);
+     	para.appendChild(t);
+     	x.setAttribute("type", "text");
+     	x.setAttribute("value", "Hello World!");
 
      
 //================================================================================
@@ -245,10 +243,10 @@ wyłuskanie pozycji:	216   var path = [marker1.getPosition(), marker2.getPositio
 //	zmiana id 'floating-form' na 'route' -> skojarzone z formularzem pythona
 
 //================================================================================
-     document.getElementById('route').appendChild(z);
-     document.getElementById(number).appendChild(para);
-     document.getElementById(number).appendChild(x);
-     document.getElementById(number).appendChild(y);
+     //document.getElementById('route').appendChild(z);
+     //document.getElementById(number).appendChild(para);
+     //document.getElementById(number).appendChild(x);
+     //document.getElementById(number).appendChild(y);
 
      //document.getElementById('floating-panel').appendChild(para);
    //  document.getElementById('floating-panel').appendChild(x);
@@ -281,7 +279,7 @@ wyłuskanie pozycji:	216   var path = [marker1.getPosition(), marker2.getPositio
                  paths[i]=[markers[i-1].getPosition(),markers[i].getPosition()];
                  tableOfPaths[i].setPath(paths[i]);
                  distance(markers[i-1].getPosition(),markers[i].getPosition(),i);
-                 document.getElementById('odleglosc'+i).value=distanceBetweenPoints[i];
+                 //document.getElementById('odleglosc'+i).value=distanceBetweenPoints[i];
 
          }
 

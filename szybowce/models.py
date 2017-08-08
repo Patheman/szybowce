@@ -18,13 +18,21 @@ class Route(models.Model):
     position8 = models.CharField(max_length=200)
     position9 = models.CharField(max_length=200)
     position10= models.CharField(max_length=200)
-    heading = models.CharField(max_length=200)    #   the angle of the route    
+    
+    heading = models.CharField(max_length=200)          #   the angle of the route   (NKDM) 
+    wind_speed = models.CharField(max_length=200)       #   (U)
+    plane_speed = models.CharField(max_length=200)      #   (Vr)
+    wind_angle = models.CharField(max_length=200)       #   (KW)
+
+    
+    
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
+
 
     def publish(self):
         self.published_date = timezone.now()
@@ -43,6 +51,7 @@ class Weather(models.Model):
     pressure = models.FloatField()
     latitude = models.FloatField()
     longitude = models.FloatField()
+
     
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)

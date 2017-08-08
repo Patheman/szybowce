@@ -2,6 +2,8 @@
 {% extends 'szybowce/base.html' %}
 
 {% block content %}
+{% load first %}
+
     <div class="route">
         {% if route.published_date %}
             <div class="date">
@@ -22,7 +24,24 @@
 	<p> {{ route.position9|linebreaksbr }}</p>
         <h3> Koniec: </h3> 
 	<p> {{ route.position10|linebreaksbr }}</p>
+	
+	{% for i in "xxx" %}
+		<p> hey </p>
+	{% endfor %}
 
+
+
+	<p> heading: {{ route.heading|nowy }} </p>
+	<p> latitude: {{ route.position10|divide_lat:6 }} </p>
+	<p> longitude: {{ route.position10|divide_lon:6 }} </p>
+	<p> sum: {{ route.position10|adding:route.position9 }} </p>
+	
+	<p> W2: {{ 20|ground_speed2:6 }} </p>
+	<p> prędkość podróżna: {{ 20|ground_speed2:6|ground_speed:150 }} </p>
+	<p> K2: {{ 6|angle_z2:160 }} </p>
+	<p> kąt znoszenia: {{ 6|angle_z2:160|angle_z:30 }} </p>
+	<p> kąt magnetyczny: {{ route.heading|angle_m:route.heading }} </p>
+	<p> czas: {{ route.heading|time:route.heading }} </p>
 
 </div>
 {% endblock %}

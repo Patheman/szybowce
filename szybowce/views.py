@@ -20,7 +20,7 @@ def route_list(request):
 def route_detail(request, pk):
 
     route = get_object_or_404(Route, pk=pk)
-    #return run()
+    
     return render(request, 'szybowce/route_detail.html', {'route': route})
     
 
