@@ -54,11 +54,11 @@ def adding(value, arg):
 ###########################  PRĘDKOŚĆ PODRÓŻNA  ###########################
 @register.filter(name='ground_speed')
 def ground_speed(W2, Vr):
-    return float(Vr) + float(W2)
+    return round(float(Vr) + float(W2), 2)
 
 @register.filter(name='ground_speed2')
 def ground_speed2(U, KW):
-    return float(U)*math.cos(float(KW))
+    return float(U)*math.cos(math.radians(float(KW)))
 ###########################################################################
 
 
@@ -66,19 +66,22 @@ def ground_speed2(U, KW):
 ###########################  KĄT ZNOSZENIA  ###############################
 @register.filter(name='angle_z')
 def angle_z(K2, U):
-    return math.asin(float(U)*float(K2))
+    return round(math.degrees(math.asin(float(U)*float(K2))), 2)
 
 @register.filter(name='angle_z2')
 def angle_z2(KW, Vr):
-    return math.sin(float(KW))/float(Vr)
+    return  math.sin(math.radians(float(KW)))/float(Vr)
 ###########################################################################
 
 
 
 ###########################  KĄT MAGNETYCZNY  #############################
 @register.filter(name='angle_m')
-def angle_m(NKDM, KZ):
-    return float(NKDM) + float(KZ)
+def angle_m(KZ, NKDM):
+    if NKDM:
+        return round(float(NKDM) + float(KZ), 2)
+    else:
+        return ''
 ###########################################################################
 
 
@@ -86,7 +89,7 @@ def angle_m(NKDM, KZ):
 ###########################  CZAS  ########################################
 @register.filter(name='time')
 def time(V, S):
-    return float(S)/float(V)
+    return round(float(S)/float(V), 2)
 ###########################################################################
 
 

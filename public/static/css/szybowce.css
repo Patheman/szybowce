@@ -37,6 +37,19 @@ h1, h2, h3, h4 {
     font-size: 26pt;
     margin-right: 20px;
 }
+.new-plan{
+width: 100%;
+}
+.map{}
+
+.plan-link{
+color: #ffffff;
+  float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+
 
 .route {
     margin-bottom: 70px;

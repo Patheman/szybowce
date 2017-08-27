@@ -7,8 +7,10 @@ from django.utils import timezone
 #   information about the planned route
 
 class Route(models.Model):
-    
-    position1 = models.CharField(max_length=200)     #   the latitude and longitude you start from
+    lista= [];
+
+    position1 = models.CharField(max_length=200)    
+    #   the latitude and longitude you start from
     position2 = models.CharField(max_length=200)     
     position3 = models.CharField(max_length=200)     
     position4 = models.CharField(max_length=200)
@@ -19,12 +21,19 @@ class Route(models.Model):
     position9 = models.CharField(max_length=200)
     position10= models.CharField(max_length=200)
     
-    heading = models.CharField(max_length=200)          #   the angle of the route   (NKDM) 
+    heading1 = models.CharField(max_length=200)          #   the angle of the route   (NKDM)
+    heading2 = models.CharField(max_length=200)
+    heading3 = models.CharField(max_length=200)
+    heading4 = models.CharField(max_length=200)
+    heading5 = models.CharField(max_length=200)
+    heading6 = models.CharField(max_length=200)
+    heading7 = models.CharField(max_length=200)
+    heading8 = models.CharField(max_length=200)
+    heading9 = models.CharField(max_length=200)
+    
     wind_speed = models.CharField(max_length=200)       #   (U)
     plane_speed = models.CharField(max_length=200)      #   (Vr)
     wind_angle = models.CharField(max_length=200)       #   (KW)
-
-    
     
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
@@ -38,7 +47,7 @@ class Route(models.Model):
         self.published_date = timezone.now()
         self.save()
     
-    def __str__(self):
+    def __str__(self): 
         return self.title
 
 

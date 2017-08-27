@@ -1,0 +1,99 @@
+
+{% extends 'szybowce/base.html' %}
+
+{% block content %}
+{% load first %}
+
+    <div class="route">
+        {% if route.published_date %}
+            <div class="date">
+                {{ route.published_date }}
+            </div>
+        {% endif %}
+	<a class="btn btn-default" href="{% url 'route_edit' pk=route.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	<div id="final">
+	<h1><p> Tytuł trasy: {{ route.title }}</h1></p>
+	<h3> Start: </h3>
+	<p> {{ route.position1|linebreaksbr }}</p>
+	<p> {{ route.position2|linebreaksbr }}</p>
+	<p> {{ route.position3|linebreaksbr }}</p>
+	<p> {{ route.position4|linebreaksbr }}</p>
+	<p> {{ route.position5|linebreaksbr }}</p>
+	<p> {{ route.position6|linebreaksbr }}</p>
+	<p> {{ route.position7|linebreaksbr }}</p>
+	<p> {{ route.position8|linebreaksbr }}</p>
+	<p> {{ route.position9|linebreaksbr }}</p>
+	<p> {{ route.position10|linebreaksbr }}</p>
+	<h3> Koniec: </h3> 
+	<p>predkosc wiatru: {{ route.wind_speed|linebreaksbr }}</p>
+	<p>Predkosc samolotu: {{ route.plane_speed|linebreaksbr }}</p>
+
+
+	{% for i in "xxx" %}
+		<p> hey {{xxx}}</p>
+	{% endfor %}
+
+
+
+	<p> heading: {{ route.heading|nowy }} </p>
+	<p> latitude: {{ route.position10|divide_lat:6 }} </p>
+	<p> longitude: {{ route.position10|divide_lon:6 }} </p>
+	<p> sum: {{ route.position10|adding:route.position9 }} </p>
+	
+	<p> W2: {{ 20|ground_speed2:6 }} </p>
+	<p> prędkość podróżna: {{ 20|ground_speed2:6|ground_speed:150 }} </p>
+	<p> K2: {{ 6|angle_z2:160 }} </p>
+	<p> kąt znoszenia: {{ 6|angle_z2:160|angle_z:30 }} </p>
+	<p> kąt magnetyczny: {{ route.heading|angle_m:route.heading }} </p>
+	<p> czas: {{ route.heading|time:route.heading }} </p>
+
+	</div>
+<button><a href="javascript:genPDF()">Download PDF</a></button>
+</div>
+
+
+<script type="text/javascript" src= "jspdf.min.js"></script>
+
+
+
+
+
+<script type="text/javascript">
+	
+function genPDF() {
+	
+	var doc = new jsPDF();
+	
+	doc.text(20,20,'TEST Message!!');
+	doc.addPage();
+	doc.text(20,20,'TEST Page 2!');
+	doc.save('Test.pdf');
+	
+}
+
+
+</script>
+
+
+{% endblock %}
+
+
+<a href="javascript:genPDF()">Download PDF</a>
+
+
+<script type="text/javascript" src= "jspdf.min.js"></script>
+<script type="text/javascript">
+	
+function genPDF() {
+	
+	var doc = new jsPDF();
+	
+	doc.text(20,20,'TEST Message!!');
+	doc.addPage();
+	doc.text(20,20,'TEST Page 2!');
+	doc.save('Test.pdf');
+	
+}
+
+
+</script>

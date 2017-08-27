@@ -2,27 +2,34 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>Szybowce</title>
+        <title>MAPA VFR</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'css/szybowce.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Philosopher|Poiret+One|Walter+Turncoat" rel="stylesheet">	
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/szybowce.css' %}">
     </head>
     <body>
 
     <div class="page-header">
 	    {% if user.is_authenticated %} 
-	    <a href="{% url 'route_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+	   <div class ="new-plan"> <a href="{% url 'route_new' %}" class="top-menu"><h3>NOWA TRASA <span class="glyphicon glyphicon-globe"></span></h3></a></div>
 	    {% endif %}
-	    <h1><a href="/">Szybowce</a></h1>
+	    <div id="title"><h1><a href="/">MAPA VFR</a></h1></div>
+      
     </div>
+
+
+    
     
     <div class="content container">
         <div class="row">
-            <div class="col-md-8">
+          
             {% block content %}
             {% endblock %}
-            </div>
+           
         </div>
     </div> 
 

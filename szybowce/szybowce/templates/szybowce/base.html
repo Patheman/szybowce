@@ -1,0 +1,34 @@
+
+{% load staticfiles %}
+<html>
+    <head>
+        <title>MAPA VFR</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/szybowce.css' %}">
+    </head>
+    <body>
+
+    <div class="page-header">
+	    {% if user.is_authenticated %} 
+	   <div class ="new-plan"> <a href="{% url 'route_new' %}" class="top-menu"><h3>NOWA TRASA <span class="glyphicon glyphicon-plus"></span></h3></a></div>
+	    {% endif %}
+	    <div id="title"><h1><a href="/">MAPA VFR</a></h1></div>
+      
+    </div>
+
+
+    
+    
+    <div class="content container">
+        <div class="row">
+          
+            {% block content %}
+            {% endblock %}
+           
+        </div>
+    </div> 
+
+    </body>
+</html>

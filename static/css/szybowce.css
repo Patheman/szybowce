@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #ff9400;
+    background-color: #b366ff;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -8,14 +8,25 @@
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
+    font-family: 'Philosopher', sans-serif;
+/*font-family: 'Walter Turncoat', cursive;
+font-family: 'Architects Daughter', cursive;
+font-family: 'Poiret One', cursive;
+*/
 }
 
 .content {
-    margin-left: 40px;
+    margin-left: 30px;
+     margin-right:30px;
+    width: 100%;
 }
 
-h1, h2, h3, h4 {
+h1 {
     font-family: 'Lobster', cursive;
+}
+
+h2, h3, h4 {
+   font-family: 'Pacifico', cursive;
 }
 
 .date {
@@ -43,6 +54,29 @@ h1, h2, h3, h4 {
     font-size: 26pt;
     margin-right: 20px;
 }
+.new-plan{
+width: 60%;
+height: 20%;
+float: right;
+
+}
+#final{
+
+
+}
+.title{
+width: 20%;
+height: 20%;
+  float: left;
+}
+.plan-link{
+color: #ffffff;
+    
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 26pt;
+    margin-right: 20px;
+}
 
 .route {
     margin-bottom: 70px;
@@ -53,20 +87,34 @@ h1, h2, h3, h4 {
 }
 
 
-#map {
+.map {
    height: 60%;
-   width: 60%;
-   float: right;
-   margin-right: 10px;
+   width: 100%;
+    margin: 10px;
  }
 
 #leftPanel {
 
-   height: 50%;
-   width: 20%;
+   height: 100%;
+   width: 25%;
+   float: left;
+   margin-left: 5px;
+ }
+ #centerPanel {
+
+   height: 100%;
+   width: 30%;
    float: left;
    margin-left: 10px;
  }
+ #rightPanel {
+
+   height: 100%;
+   width: 30%;
+   float: left;
+   margin-left: 10px;
+ }
+
 
 #serachPanel {
    position: relative;
