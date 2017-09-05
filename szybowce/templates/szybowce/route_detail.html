@@ -14,17 +14,23 @@
 	<div id="final">
 	<h1><p> Tytuł trasy: {{ route.title }}</h1></p>
 	<h3> Punkty wraz z kątami </h3>
-	<p> {{ route.position1|linebreaksbr }} {{ route.heading1|linebreaksbr }}</p>
-	<p> {{ route.position2|linebreaksbr }} {{ route.heading2|linebreaksbr }}</p>
-	<p> {{ route.position3|linebreaksbr }} {{ route.heading3|linebreaksbr }}</p>
-	<p> {{ route.position4|linebreaksbr }} {{ route.heading4|linebreaksbr }}</p>
-	<p> {{ route.position5|linebreaksbr }} {{ route.heading5|linebreaksbr }}</p>
-	<p> {{ route.position6|linebreaksbr }} {{ route.heading6|linebreaksbr }}</p>
-	<p> {{ route.position7|linebreaksbr }} {{ route.heading7|linebreaksbr }}</p>
-	<p> {{ route.position8|linebreaksbr }} {{ route.heading8|linebreaksbr }}</p>
-	<p> {{ route.position9|linebreaksbr }} {{ route.heading9|linebreaksbr }}</p>
-	<p> {{ route.position10|linebreaksbr }}</p>
+	<p> {{ route.position1|gps_name }} {{ route.heading1|linebreaksbr }}</p>
+	<p> {{ route.position2|gps_name }} {{ route.heading2|linebreaksbr }}</p>
+	<p> {{ route.position3|gps_name }} {{ route.heading3|linebreaksbr }}</p>
+	<p> {{ route.position4|gps_name }} {{ route.heading4|linebreaksbr }}</p>
+	<p> {{ route.position5|gps_name }} {{ route.heading5|linebreaksbr }}</p>
+	<p> {{ route.position6|gps_name }} {{ route.heading6|linebreaksbr }}</p>
+	<p> {{ route.position7|gps_name }} {{ route.heading7|linebreaksbr }}</p>
+	<p> {{ route.position8|gps_name }} {{ route.heading8|linebreaksbr }}</p>
+	<p> {{ route.position9|gps_name }} {{ route.heading9|linebreaksbr }}</p>
+	<p> {{ route.position10|gps_name }}</p>
 	
+	<h3> Odległości w km </h3>
+	<p> {{ route.position1|calc_dist:route.position2 }} </p>
+
+	<h3> Czasy w h </h3>
+	<p> {{ route.position1|calc_dist:route.position2|time:route.plane_speed }} </p>
+
 	<h3> Nastawy </h3>	
 	<p>predkosc wiatru: {{ route.wind_speed|linebreaksbr }}</p>
 	<p>Predkosc samolotu: {{ route.plane_speed|linebreaksbr }}</p>
@@ -46,9 +52,7 @@
         <p> {{ route.wind_angle|angle_z2:route.plane_speed|angle_z:route.wind_speed|angle_m:route.heading9 }} </p>
 
 	</div>
-
-
-<button><a href="javascript:genPDF()">Download PDF</a></button>
+	<h1><a href="{% url 'pdf_gen' pk=route.pk %}">Pobierz plik pdf</a></h1>
 </div>
 
 

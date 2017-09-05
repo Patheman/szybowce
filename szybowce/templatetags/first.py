@@ -1,6 +1,11 @@
 from django import template
+from geopy.geocoders import Nominatim
+from geopy.distance import vincenty
 import math
+
 register = template.Library()
+geolocator = Nominatim()
+
 
 @register.filter(name='nowy')
 def nowy(value):
@@ -51,6 +56,48 @@ def adding(value, arg):
 
 
 
+
+###########################  OBLICZANIE ODLEGŁOŚCI  ######################
+@register.filter(name='calc_dist')
+def calc_dist(p1, p2):
+    p1_string = p1.split( )
+    p1_lat = p1_string[0]
+    p1_lon = p1_string[1]
+    f_p1_lat = float(p1_lat)
+    f_p1_lon = float(p1_lon)
+
+    p2_string = p2.split( )
+    p2_lat = p2_string[0]
+    p2_lon = p2_string[1]
+    f_p2_lat = float(p2_lat)
+    f_p2_lon = float(p2_lon)
+    
+    if f_p1_lat and f_p1_lon and f_p2_lat and f_p2_lon:
+        first = (f_p1_lat, f_p1_lon)
+        second = (f_p2_lat, f_p2_lon)
+        return vincenty(first, second).kilometers
+    else:
+        return ''
+##########################################################################
+
+
+
+###########################  DODANIE NAZW MIEJSCOWOŚCI  ###########################
+@register.filter(name='gps_name')
+def gps_name(arg):
+    if arg:
+        original_string = arg
+        my_list = arg.split( )
+        lat = my_list[0]
+        lon = my_list[1]
+        location = geolocator.reverse("%s, %s" % (lat, lon))
+        return location.address
+    else:
+        return ''
+###################################################################################
+
+
+
 ###########################  PRĘDKOŚĆ PODRÓŻNA  ###########################
 @register.filter(name='ground_speed')
 def ground_speed(W2, Vr):
@@ -88,8 +135,11 @@ def angle_m(KZ, NKDM):
 
 ###########################  CZAS  ########################################
 @register.filter(name='time')
-def time(V, S):
-    return round(float(S)/float(V), 2)
+def time(S, V):
+    if V and S:
+        return round(float(S)/float(V), 2)
+    else:
+        return ''
 ###########################################################################
 
 
