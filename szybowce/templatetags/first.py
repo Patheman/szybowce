@@ -91,7 +91,23 @@ def gps_name(arg):
         lat = my_list[0]
         lon = my_list[1]
         location = geolocator.reverse("%s, %s" % (lat, lon))
-        return location.address
+        data = location.raw
+        data = data['address']
+        where = ''
+        if 'city' in data.keys():
+            where = where + " | " + data['city']
+        elif 'town' in data.keys():
+            where = where + " | " + data['town']
+        elif 'village' in data.keys():
+            where = where + " | " + data['village']
+        if 'county' in data.keys():
+            where = where + " | " + data['county']
+        if 'state' in data.keys():
+            where = where + " | " + data['state']
+        if 'country' in data.keys():
+            where = where + " | " + data['country']
+        return where + " | "
+        #return location.address
     else:
         return ''
 ###################################################################################
