@@ -10,7 +10,9 @@
                 {{ route.published_date }}
             </div>
         {% endif %}
+	{% if user.is_authenticated %}
 	<a class="btn btn-default" href="{% url 'route_edit' pk=route.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	{% endif %}
 	<div id="final">
 	<h1><p> Tytuł trasy: {{ route.title }}</h1></p>
 	<h3> Punkty wraz z kątami </h3>
@@ -27,18 +29,43 @@
 	
 	<h3> Odległości w km </h3>
 	<p> {{ route.position1|calc_dist:route.position2 }} </p>
+	<p> {{ route.position2|calc_dist:route.position3 }} </p>
+	<p> {{ route.position3|calc_dist:route.position4 }} </p>
+	<p> {{ route.position4|calc_dist:route.position5 }} </p>
+	<p> {{ route.position5|calc_dist:route.position6 }} </p>
+	<p> {{ route.position6|calc_dist:route.position7 }} </p>
+	<p> {{ route.position7|calc_dist:route.position8 }} </p>
+	<p> {{ route.position8|calc_dist:route.position9 }} </p>
+	<p> {{ route.position9|calc_dist:route.position10 }} </p>
+
 
 	<h3> Czasy w h </h3>
-	<p> {{ route.position1|calc_dist:route.position2|time:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading1|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position1|time2:route.position2}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading2|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position2|time2:route.position3}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading3|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position3|time2:route.position4}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading4|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position4|time2:route.position5}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading5|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position5|time2:route.position6}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading6|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position6|time2:route.position7}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading7|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position7|time2:route.position8}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading8|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position8|time2:route.position9}} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading9|ground_speed2:route.wind_speed|ground_speed:route.plane_speed|time1:route.position9|time2:route.position10}} </p>
 
 	<h3> Nastawy </h3>	
 	<p>predkosc wiatru: {{ route.wind_speed|linebreaksbr }}</p>
 	<p>Predkosc samolotu: {{ route.plane_speed|linebreaksbr }}</p>
 	<p>kat wiatru: {{ route.wind_angle|linebreaksbr }}</p>
-	
-	<h3> Obliczenia wspólne </h3>
-        <p> prędkość podróżna: {{ route.wind_speed|ground_speed2:route.wind_angle|ground_speed:route.plane_speed }} </p>
-        <p> kąt znoszenia: {{ route.wind_angle|angle_z2:route.plane_speed|angle_z:route.wind_speed }} </p>
+        <p> Kąt znoszenia: {{ route.wind_angle|angle_z2:route.plane_speed|angle_z:route.wind_speed }} </p>
+        
+	<h3> Prędkości podróżne </h3>
+	<p> {{ route.wind_angle|angle_add:route.heading1|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading2|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading3|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading4|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading5|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading6|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading7|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading8|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
+	<p> {{ route.wind_angle|angle_add:route.heading9|ground_speed2:route.wind_speed|ground_speed:route.plane_speed }} </p>
 	
 	<h3>Kąty magnetyczne</h3>
         <p> {{ route.wind_angle|angle_z2:route.plane_speed|angle_z:route.wind_speed|angle_m:route.heading1 }} </p>

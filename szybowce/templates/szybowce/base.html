@@ -15,7 +15,12 @@
 
     <div class="page-header">
 	    {% if user.is_authenticated %} 
-	   <div class ="new-plan"> <a href="{% url 'route_new' %}" class="top-menu"><h3>NOWA TRASA <span class="glyphicon glyphicon-globe"></span></h3></a></div>
+	   	<div class ="new-plan">
+		<a href="{% url 'route_new' %}" class="top-menu"><h3>NOWA TRASA <span class="glyphicon glyphicon-globe"></span></h3></a>
+	    	</div>
+		<p><h3>Witaj {{ user.username }}, <a href="{% url 'logout' %}">wyloguj się.</a></h3></p>
+	    {% else %}
+	    <a href="{% url 'login' %}" class="top-menu"><h3>Zaloguj się</h3></a>
 	    {% endif %}
 	    <div id="title"><h1><a href="/">MAPA VFR</a></h1></div>
       

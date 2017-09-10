@@ -2,6 +2,7 @@ import os
 import reportlab
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from .models import Route
 from .models import Weather
 from .forms import WeatherForm
@@ -113,7 +114,7 @@ def route_detail(request, pk):
     return render(request, 'szybowce/route_detail.html', {'route': route})
     
 
-
+@login_required
 def route_new(request):
 
     if request.method == "POST":
@@ -129,7 +130,7 @@ def route_new(request):
     return render(request, 'szybowce/route_edit.html', {'form': form})
 
 
-
+@login_required
 def route_edit(request, pk):
 
     route = get_object_or_404(Route, pk=pk)

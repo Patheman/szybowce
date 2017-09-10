@@ -60,22 +60,25 @@ def adding(value, arg):
 ###########################  OBLICZANIE ODLEGŁOŚCI  ######################
 @register.filter(name='calc_dist')
 def calc_dist(p1, p2):
-    p1_string = p1.split( )
-    p1_lat = p1_string[0]
-    p1_lon = p1_string[1]
-    f_p1_lat = float(p1_lat)
-    f_p1_lon = float(p1_lon)
+    if p1 and p2:
+        p1_string = p1.split( )
+        p1_lat = p1_string[0]
+        p1_lon = p1_string[1]
+        f_p1_lat = float(p1_lat)
+        f_p1_lon = float(p1_lon)
 
-    p2_string = p2.split( )
-    p2_lat = p2_string[0]
-    p2_lon = p2_string[1]
-    f_p2_lat = float(p2_lat)
-    f_p2_lon = float(p2_lon)
-    
-    if f_p1_lat and f_p1_lon and f_p2_lat and f_p2_lon:
-        first = (f_p1_lat, f_p1_lon)
-        second = (f_p2_lat, f_p2_lon)
-        return vincenty(first, second).kilometers
+        p2_string = p2.split( )
+        p2_lat = p2_string[0]
+        p2_lon = p2_string[1]
+        f_p2_lat = float(p2_lat)
+        f_p2_lon = float(p2_lon)
+        
+        if f_p1_lat and f_p1_lon and f_p2_lat and f_p2_lon:
+            first = (f_p1_lat, f_p1_lon)
+            second = (f_p2_lat, f_p2_lon)
+            return round(vincenty(first, second).kilometers, 2)
+        else:
+            return ''
     else:
         return ''
 ##########################################################################
@@ -117,11 +120,35 @@ def gps_name(arg):
 ###########################  PRĘDKOŚĆ PODRÓŻNA  ###########################
 @register.filter(name='ground_speed')
 def ground_speed(W2, Vr):
-    return round(float(Vr) + float(W2), 2)
-
+    if W2 and Vr:
+        return round(float(Vr) + float(W2), 2)
+    else:
+        return ''
 @register.filter(name='ground_speed2')
-def ground_speed2(U, KW):
-    return float(U)*math.cos(math.radians(float(KW)))
+def ground_speed2(KW, U):
+    if KW and U:
+        return float(U)*math.cos(math.radians(float(KW)))
+    else:
+        return ''
+###########################################################################
+
+
+
+###########################  UZUPEŁNIJ KĄT  ###############################
+@register.filter(name='angle_add')
+def angle_add(KW, NKDW):
+    if KW and NKDW:
+        a = float(KW) - float(NKDW)
+        if abs(float(a)) < 180.0:
+            return a
+        else:
+            if float(a) > 0:
+                return math.copysign(360.0 - abs(float(a)), -1)
+            else:
+                return 360.0 - abs(float(a))
+    else:
+        return ''
+
 ###########################################################################
 
 
@@ -129,11 +156,17 @@ def ground_speed2(U, KW):
 ###########################  KĄT ZNOSZENIA  ###############################
 @register.filter(name='angle_z')
 def angle_z(K2, U):
-    return round(math.degrees(math.asin(float(U)*float(K2))), 2)
+    if K2 and U:
+        return round(math.degrees(math.asin(float(U)*float(K2))), 2)
+    else:
+        return ''
 
 @register.filter(name='angle_z2')
 def angle_z2(KW, Vr):
-    return  math.sin(math.radians(float(KW)))/float(Vr)
+    if KW and Vr:
+        return  math.sin(math.radians(float(KW)))/float(Vr)
+    else:
+        return ''
 ###########################################################################
 
 
@@ -142,7 +175,7 @@ def angle_z2(KW, Vr):
 @register.filter(name='angle_m')
 def angle_m(KZ, NKDM):
     if NKDM:
-        return round(float(NKDM) + float(KZ), 2)
+        return round(float(KZ) + float(NKDM), 2)
     else:
         return ''
 ###########################################################################
@@ -151,11 +184,70 @@ def angle_m(KZ, NKDM):
 
 ###########################  CZAS  ########################################
 @register.filter(name='time')
-def time(S, V):
+def time(V, S):
     if V and S:
+        return round(float(S)/float(V), 2)
+    else:
+        return ''
+@register.filter(name='time1')
+def time1(V, S1):
+    if V and S1:
+        return str(V) + '|' + str(S1)
+    else:
+        return ''
+@register.filter(name='time2')
+def time2(t1, S2):
+    if t1 and S2:
+        my_string = t1.split('|')
+        V = float(my_string[0])
+        S1 = my_string[1]
+        
+        p1_string = S1.split( )
+        p1_lat = p1_string[0]
+        p1_lon = p1_string[1]
+        f_p1_lon = float(p1_lon)
+        f_p1_lat = float(p1_lat)
+
+        p2_string = S2.split( )
+        p2_lat = p2_string[0]
+        p2_lon = p2_string[1]
+        f_p2_lon = float(p2_lon)
+        f_p2_lat = float(p2_lat)
+
+
+        if f_p1_lat and f_p1_lon and f_p2_lat and f_p2_lon:
+            first = (f_p1_lat, f_p1_lon)
+            second = (f_p2_lat, f_p2_lon)
+            S = round(vincenty(first, second).kilometers, 2)
+         
         return round(float(S)/float(V), 2)
     else:
         return ''
 ###########################################################################
 
 
+###########################  OBLICZANIE ODLEGŁOŚCI  ######################
+@register.filter(name='calc_dist')
+def calc_dist(p1, p2):
+    if p1 and p2:
+        p1_string = p1.split( )
+        p1_lat = p1_string[0]
+        p1_lon = p1_string[1]
+        f_p1_lat = float(p1_lat)
+        f_p1_lon = float(p1_lon)
+
+        p2_string = p2.split( )
+        p2_lat = p2_string[0]
+        p2_lon = p2_string[1]
+        f_p2_lat = float(p2_lat)
+        f_p2_lon = float(p2_lon)
+        
+        if f_p1_lat and f_p1_lon and f_p2_lat and f_p2_lon:
+            first = (f_p1_lat, f_p1_lon)
+            second = (f_p2_lat, f_p2_lon)
+            return round(vincenty(first, second).kilometers, 2)
+        else:
+            return ''
+    else:
+        return ''
+##########################################################################

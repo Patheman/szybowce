@@ -6,7 +6,7 @@ urlpatterns = [
     url(r'^route/(?P<pk>[0-9]+)/$', views.route_detail, name='route_detail'),
     url(r'^route/new/$', views.route_new, name='route_new'),
     url(r'^route/(?P<pk>[0-9]+)/edit/$', views.route_edit, name='route_edit'),
-
+    url(r'^accounts/login/$', views.login),
 
 
 ]

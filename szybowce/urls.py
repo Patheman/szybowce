@@ -7,6 +7,4 @@ urlpatterns = [
     url(r'^route/new/$', views.route_new, name='route_new'),
     url(r'^route/(?P<pk>[0-9]+)/edit/$', views.route_edit, name='route_edit'),
     url(r'^route/(?P<pk>[0-9]+)/pdf/$', views.pdf_gen, name='pdf_gen'),
-    
-
 ]
