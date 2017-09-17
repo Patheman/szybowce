@@ -1,6 +1,6 @@
 <!--
 
-wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPosition()]; TreÅ›Ä‡ komentarza 
+wyluskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPosition()]; Tresc komentarza 
 
 -->
 
@@ -16,8 +16,8 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <hr/> <center>  <p class="panel">Nowa trasa lotu</p></center> <hr/>
-  <!--<br>KÄ…t(test): <input type="text" readonly id="heading"> 
+ <hr/> <center>  <h2>Nowa trasa lotu</h2></center> <hr/>
+  <!--<br>K¹t(test): <input type="text" readonly id="heading"> 
      
 <button onclick="addCityToForm()">Click me</button>
 -->
@@ -27,14 +27,14 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 
 <hr/>
     <center><label>Znajdz lotnisko po kodzie: <input id="address" type="textbox" value="EPZP">
-       <input id="find" type="button" value="ZnajdÅº"><i class="fa fa-search"></i></label></center><br>
+       <input id="find" type="button" value="ZnajdŸ"><i class="fa fa-search"></i></label></center><br>
 
 </form>
 
 <div id="panelBoczny">
  
     <div id="titleW">
-        SprawdÅº pogodÄ™!
+        Sprawdz pogode!
     </div>
       
     <div id="content">
@@ -46,14 +46,14 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 
 <form method="POST" class="route-form" id="route">{% csrf_token %}
     <div>
-   <hr/><center><p><label for="id_title">TytuÅ‚ Twojej trasy:</label>
+   <hr/><center><p><label for="id_title">Tytu³ Twojej trasy:</label>
     <input id="id_title" type="text" name="title" maxlength="" /></p></center> 
     </div><hr/>
 
 
 <div id ="left">
     <div id = "leftPanel">
-  <center><p class="panel">WspÃ³Å‚rzÄ™dne lotu</p></center><hr>
+  <center><h2>Wspó³rzêdne lotu</h2></center><hr>
   <p id="ppos1"><label for="id_position1">Punkt startowy:</label>
       <input type="text" name="position1" id="id_position1" value="" /></p>
   <p id="ppos2"><label for="id_position2">Punkt 2:</label>
@@ -72,55 +72,55 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
       <input type="text" name="position8" id="id_position8" value="" /></p>
   <p id="ppos9"><label for="id_position9">Punkt 9:</label>
       <input type="text" name="position9" id="id_position9" value="" /></p>
-  <p id="ppos10"><label for="id_position10">Punkt koÅ„cowy:</label>
+  <p id="ppos10"><label for="id_position10">Punkt koñcowy:</label>
       <input type="text" name="position10" id="id_position10" value="" /></p>
     
     </div>
 
     <div id = "centerPanel">
 
-      <center><p class="panel">KÄ…ty lotu</p></center><hr>
-    <p id="pangle1"><label for="id_angle1">KÄ…t lotu 1:</label>
+      <center><h2>K¹ty lotu</h2></center><hr>
+    <p id="pangle1"><label for="id_angle1">K¹t lotu 1:</label>
           <input type="text" name="heading1" id="id_angle1" value="" /></p>
-    <p id="pangle2"><label for="id_angle2">KÄ…t lotu 2:</label>
+    <p id="pangle2"><label for="id_angle2">K¹t lotu 2:</label>
           <input id="id_angle2" type="text" name="heading2" maxlength="" /></p>
-  <p id="pangle3"><label for="id_angle3">KÄ…t lotu 3:</label>
+  <p id="pangle3"><label for="id_angle3">K¹t lotu 3:</label>
           <input id="id_angle3" type="text" name="heading3" maxlength="" /></p>
-  <p id="pangle4"><label for="id_angle4">KÄ…t lotu 4:</label>
+  <p id="pangle4"><label for="id_angle4">K¹t lotu 4:</label>
           <input id="id_angle4" type="text" name="heading4" maxlength="" /></p>
-  <p id="pangle5"><label for="id_angle5">KÄ…t lotu 5:</label>
+  <p id="pangle5"><label for="id_angle5">K¹t lotu 5:</label>
           <input id="id_angle5" type="text" name="heading5" maxlength="" /></p>
-  <p id="pangle6"><label for="id_angle6">KÄ…t lotu 6:</label>
+  <p id="pangle6"><label for="id_angle6">K¹t lotu 6:</label>
           <input id="id_angle6" type="text" name="heading6" maxlength="" /></p>
-  <p id="pangle7"><label for="id_angle7">KÄ…t lotu 7:</label>
+  <p id="pangle7"><label for="id_angle7">K¹t lotu 7:</label>
           <input id="id_angle7" type="text" name="heading7" maxlength="" /></p>
-  <p id="pangle8"><label for="id_angle8">KÄ…t lotu 8:</label>
+  <p id="pangle8"><label for="id_angle8">K¹t lotu 8:</label>
           <input id="id_angle8" type="text" name="heading8" maxlength="" /></p>
-  <p id="pangle9"><label for="id_angle9">KÄ…t lotu 9:</label>       
+  <p id="pangle9"><label for="id_angle9">K¹t lotu 9:</label>       
           <input id="id_angle9" type="text" name="heading9" maxlength="" /></p>
     </div>
 </div>
-<!-- Dodanie suwakÃ³w z predkoscia oraz z katem lotu i katem wiatru
-      <p><label for="id_heading1">KÄ…t lotu:</label>
+<!-- Dodanie suwaków z predkoscia oraz z katem lotu i katem wiatru
+      <p><label for="id_heading1">K¹t lotu:</label>
       <input type="text" name="heading1" id="id_heading1" value=" " /></p>
  -->
  
    <div id = "rightPanel">
-  <center><p class="panel">Nastawy</p></center> <hr>     
-    <p><label for="id_wind_speed">PrÄ™dkoÅ›Ä‡ wiatru (knots/s):</label>
+  <center><h2>Nastawy</h2></center> <hr>     
+    <p><label for="id_wind_speed">Prêdkoœc wiatru (knots/s):</label>
     <input type="range" id="myWindRange" min="0" max="50" step="1"  value="0" onclick="valueFromWindSlider()"> 
         <input type="text" name="wind_speed" id="id_wind_speed" value=" " /></p>
-<p><label for="id_wind_angle">KÄ…t wiatru : </label>
+<p><label for="id_wind_angle">K¹t wiatru : </label>
     <input type="range" id="myWindAngleRange" min="0" max="360" step="1"  value="50"  onclick="valueFromWindAngleSlider()">
     
         <input type="text" name="wind_angle" id="id_wind_angle" value=" " /></p>
 
-    <p><label for="id_plane_speed">PrÄ™dkoÅ›Ä‡ samolotu (knots) :</label>
+    <p><label for="id_plane_speed">Prêdkoœc samolotu (knots) :</label>
      <input type="range" id="mySpeedRange" min="50" max="200" step="1"  value="50" onclick="valueFromSpeedSlider()">
         <input type="text" name="plane_speed" id="id_plane_speed" value=" " /></p>
 
   <!--<button type="submit" class="save btn btn-default"><i class="fa fa-plane"></i> Dodaj TRASE</button> -->
-<center><button type="submit" id="submitButton"><i class="fa fa-plane"></i> Dodaj trasÄ™</button></center>
+<center><button type="submit" id="submitButton"><i class="fa fa-plane"></i> Dodaj TRASE</button></center>
 
   {{ form.errors }}
     </div>
@@ -132,7 +132,7 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 
      <script>
 
-       var marker1, marker2;
+      var marker1, marker2;
        var poly, geodesicPoly;
                  var markers = [];
                  var polyTable = [];
@@ -169,6 +169,7 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 
          });
 
+
           marker1 = new google.maps.Marker({
            map: map,
            draggable: true,
@@ -180,14 +181,16 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
            draggable: true,
            position: {lat: 52.2340, lng: 21.0287}
          });
+
          var bounds = new google.maps.LatLngBounds(
-         marker1.getPosition(), marker2.getPosition());
+             marker1.getPosition(), marker2.getPosition());
          map.fitBounds(bounds);
-         
-	 google.maps.event.addListener(marker1, 'position_changed', update);
+
+         google.maps.event.addListener(marker1, 'position_changed', update);
          google.maps.event.addListener(marker2, 'position_changed', update);
-	 google.maps.event.addDomListener(window, 'load', initialize);
-	 poly = new google.maps.Polyline({
+         google.maps.event.addDomListener(window, 'load', initialize);
+
+         poly = new google.maps.Polyline({
            strokeColor: '#FF0000',
            strokeOpacity: 1.0,
            strokeWeight: 3,
@@ -212,7 +215,7 @@ wyÅ‚uskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
            geodesic: true,
            map: map
          });
-          ///// Usuwanie paragrafÃ³w //
+          ///// Usuwanie paragrafów //
          // document.getElementById("pangle0").style.visibility = "hidden";
           for(var i=2;i<11;i++){
             hideParagrafs(i);
@@ -350,7 +353,7 @@ function update() {
 
 
 
-// ====Petla odpowiedzialna za wyliczanie kÄ…tÃ³w w UPDATE + wpisanie ich do formularza
+// ====Petla odpowiedzialna za wyliczanie k¹tów w UPDATE + wpisanie ich do formularza
          if(markers.length >1 ){
            for(var i = 1;i<markers.length;i++){
            headings[i] = google.maps.geometry.spherical.computeHeading(markers[i-1].getPosition(),markers[i].getPosition());
