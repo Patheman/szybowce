@@ -1,26 +1,11 @@
-<!--
-
-wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPosition()]; Treść komentarza 
-
--->
-
-
-
 {% extends 'szybowce/base.html' %}
 
 {% block content %}
 
-<!--  formularz do bazy danych  
-  <input id='start_lat' type="textbox" value="23.01">
-
--->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <hr/> <center>  <p class="panel">Nowa trasa lotu</p></center> <hr/>
-  <!--<br>Kąt(test): <input type="text" readonly id="heading"> 
-     
-<button onclick="addCityToForm()">Click me</button>
--->
+ <hr/> <center>  <h2>Nowa trasa lotu</h2></center> <hr/>
+
      <center><div id="map" style="width:80%;height: 100%;margin: 20px"></div></center>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 
@@ -34,7 +19,7 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 <div id="panelBoczny">
  
     <div id="titleW">
-        Sprawdź pogodę!
+        Sprawdz pogode!
     </div>
       
     <div id="content">
@@ -53,7 +38,7 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 
 <div id ="left">
     <div id = "leftPanel">
-  <center><p class="panel">Współrzędne lotu</p></center><hr>
+  <center><h2>Współrzędne lotu</h2></center><hr>
   <p id="ppos1"><label for="id_position1">Punkt startowy:</label>
       <input type="text" name="position1" id="id_position1" value="" /></p>
   <p id="ppos2"><label for="id_position2">Punkt 2:</label>
@@ -79,7 +64,7 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 
     <div id = "centerPanel">
 
-      <center><p class="panel">Kąty lotu</p></center><hr>
+      <center><h2>Kąty lotu</h2></center><hr>
     <p id="pangle1"><label for="id_angle1">Kąt lotu 1:</label>
           <input type="text" name="heading1" id="id_angle1" value="" /></p>
     <p id="pangle2"><label for="id_angle2">Kąt lotu 2:</label>
@@ -100,14 +85,10 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
           <input id="id_angle9" type="text" name="heading9" maxlength="" /></p>
     </div>
 </div>
-<!-- Dodanie suwaków z predkoscia oraz z katem lotu i katem wiatru
-      <p><label for="id_heading1">Kąt lotu:</label>
-      <input type="text" name="heading1" id="id_heading1" value=" " /></p>
- -->
  
    <div id = "rightPanel">
-  <center><p class="panel">Nastawy</p></center> <hr>     
-    <p><label for="id_wind_speed">Prędkość wiatru (knots/s):</label>
+  <center><h2>Nastawy</h2></center> <hr>     
+    <p><label for="id_wind_speed">Prędkośc wiatru (knots/s):</label>
     <input type="range" id="myWindRange" min="0" max="50" step="1"  value="0" onclick="valueFromWindSlider()"> 
         <input type="text" name="wind_speed" id="id_wind_speed" value=" " /></p>
 <p><label for="id_wind_angle">Kąt wiatru : </label>
@@ -115,12 +96,10 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
     
         <input type="text" name="wind_angle" id="id_wind_angle" value=" " /></p>
 
-    <p><label for="id_plane_speed">Prędkość samolotu (knots) :</label>
+    <p><label for="id_plane_speed">Prędkośc samolotu (knots) :</label>
      <input type="range" id="mySpeedRange" min="50" max="200" step="1"  value="50" onclick="valueFromSpeedSlider()">
         <input type="text" name="plane_speed" id="id_plane_speed" value=" " /></p>
-
-  <!--<button type="submit" class="save btn btn-default"><i class="fa fa-plane"></i> Dodaj TRASE</button> -->
-<center><button type="submit" id="submitButton"><i class="fa fa-plane"></i> Dodaj trasę</button></center>
+<center><button type="submit" id="submitButton"><i class="fa fa-plane"></i> Dodaj TRASE</button></center>
 
   {{ form.errors }}
     </div>
@@ -132,8 +111,8 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
 
      <script>
 
-       var marker1, marker2;
-       var poly, geodesicPoly;
+                  var marker1, marker2;
+                 var poly, geodesicPoly;
                  var markers = [];
                  var polyTable = [];
                  var tableOfPaths= [];
@@ -141,7 +120,7 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
                  var headings=[];
                  var tableOfCities =[];
                  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-          var labelIndex = 0;
+                  var labelIndex = 0;
 
 
        function initMap() {
@@ -163,31 +142,21 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
           map.controls[google.maps.ControlPosition.TOP_CENTER].push(
              document.getElementById('info'));
 
-   map.addListener('click', function(e) {
+        map.addListener('click', function(e) {
          placeMarkerAndPanTo(e.latLng, map);
         tableOfPaths.push(createNewPath(map));
 
          });
+         map.addListener('projection_changed', function(e) {
+         //placeMarkerAndPanTo(e.latLng, map);
+        tableOfPaths.push(createNewPath(map));
 
-          marker1 = new google.maps.Marker({
-           map: map,
-           draggable: true,
-           position: {lat: 52.41, lng: 16.92}
-         });
+         });  
 
-         marker2 = new google.maps.Marker({
-           map: map,
-           draggable: true,
-           position: {lat: 52.2340, lng: 21.0287}
-         });
-         var bounds = new google.maps.LatLngBounds(
-         marker1.getPosition(), marker2.getPosition());
-         map.fitBounds(bounds);
-         
-	 google.maps.event.addListener(marker1, 'position_changed', update);
-         google.maps.event.addListener(marker2, 'position_changed', update);
-	 google.maps.event.addDomListener(window, 'load', initialize);
-	 poly = new google.maps.Polyline({
+
+         google.maps.event.addDomListener(window, 'load', initialize);
+
+         poly = new google.maps.Polyline({
            strokeColor: '#FF0000',
            strokeOpacity: 1.0,
            strokeWeight: 3,
@@ -213,7 +182,7 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
            map: map
          });
           ///// Usuwanie paragrafów //
-         // document.getElementById("pangle0").style.visibility = "hidden";
+        
           for(var i=2;i<11;i++){
             hideParagrafs(i);
            
@@ -224,7 +193,7 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
           function createNewPath(map){
 
                  polyPath = new google.maps.Polyline({
-                 strokeColor: '#FF0000',
+                 strokeColor: '#4CAF50',
            strokeOpacity: 1.0,
            strokeWeight: 3,
             map : map,
@@ -244,12 +213,11 @@ wyłuskanie pozycji: 216   var path = [marker1.getPosition(), marker2.getPositio
          markers.push(marker);
 
 
-       //  var dummy = '<span>Dystans:'+labelIndex +' <input type="text"><small>(ft)</small></span>\r\n';
-                 //document.getElementById('floating-panel').innerHTML += dummy;
+
 
                 google.maps.event.addListener(marker, 'position_changed', update);
                 google.maps.event.addListener(map,'click', update);
-                addCityToForm(marker);
+                
                 addElement(markers.length,marker);
               
 
@@ -326,7 +294,6 @@ function showParagraf(number){
 function update() {
  
          var paths = [];
-         var path = [marker1.getPosition(), marker2.getPosition()];
          if(markers!=""){
          var lat = markers[0].getPosition();
 
@@ -337,15 +304,7 @@ function update() {
                  distance(markers[i-1].getPosition(),markers[i].getPosition(),i);
                   document.getElementById('id_position'+markers.length).value= Round(markers[i].position.lat(), 2) + " "+Round(markers[i].position.lng(), 2)  ;
            }
-         
-
-
-
-          for(var i = 1;i<markers.length;i++){
-                 
-        //codeLatLng(markers[i-1].position.lat(),markers[i-1].position.lng());
-                //   console.log("Miejscowosc" +i +tableOfCities[i])
-              }     
+       
 
 
 
@@ -360,28 +319,7 @@ function update() {
                    addAngle(i);
               }
          }}
-///=======================================
 
-  
-         poly.setPath(path);
-         geodesicPoly.setPath(path);
-       //  var heading = google.maps.geometry.spherical.computeHeading(nyc, london);
-        var heading = google.maps.geometry.spherical.computeHeading(path[0], path[1]);
-       var distanses = google.maps.geometry.spherical.computeDistanceBetween(path[0], path[1])/ 1000;
-
-//  ===========================================
-//  TUTAJ ZMIENIAM ATRYBUT ID NA TEGO Z PYTHONA
-//  ===========================================
-
-         //document.getElementById('heading').value = heading;
-         //document.getElementById('id_position1').value = path[0].toString();
-         //document.getElementById('id_position3').value = path[1].toString();
-
-
-          //console.log("update");
-         //console.log("Distanse"+distanses);
-        // console.log("kat"+heading);
-          console.log(markers.length);
           showParagraf(markers.length);
 
        }
@@ -431,10 +369,10 @@ function codeLatLng(lat,lng) {
           }
         });
       } else {
-        //alert("No results found");
+        
       }
     } else {
-      //alert("Geocoder failed due to: " + status);
+      
     }
   });
 }
@@ -446,54 +384,14 @@ function codeLatLng(lat,lng) {
 
 ///============================
   function addElement(number,marker) {
-      var z = document.createElement("div");
-      z.id=number;
-      var x = document.createElement("INPUT");
-      var y = document.createElement("INPUT");
-      x.id="pozycja"+number;
-      y.id="odleglosc"+number;
-      var para = document.createElement("P");
-      var t = document.createTextNode("Punkt " +number);
-      para.appendChild(t);
-      x.setAttribute("type", "text");
-      x.setAttribute("value", "Hello World!");
 
-     
-//================================================================================
-     
-//  zmiana id 'floating-form' na 'route' -> skojarzone z formularzem pythona
-
-//================================================================================
-     //document.getElementById('route').appendChild(z);
-     //document.getElementById(number).appendChild(para);
-     //document.getElementById(number).appendChild(x);
-     //document.getElementById(number).appendChild(y);
-
-     //document.getElementById('floating-panel').appendChild(para);
-   //  document.getElementById('floating-panel').appendChild(x);
-     //document.getElementById('floating-panel').appendChild(y);
-
-
-     //document.getElementById('pozycja'+number).value= Round(marker.position.lat(), 2) + " "+Round(marker.position.lng(), 2)  ;
     document.getElementById('id_position'+number).value= Round(marker.position.lat(), 2) + " "+Round(marker.position.lng(), 2)  ;
-   //var nazwa= codeLatLng(marker.position.lat(),marker.position.lng());
-   //console.log("dadada  " + nazwa);
-  //document.getElementById('nazwa').value=codeLatLng(marker.position.lat(),marker.position.lng());
-}
+   }
 
-
-// Dodawnaie nazwy do formularza ALENIE DZIALA
-function addCityToForm(marker){
-
-var nazwa =codeLatLng(marker.position.lat(),marker.position.lng());
-
-
-}
 
 // Dodawanie kata do formularza
 function addAngle(number) {
-  
-    document.getElementById('id_angle'+(number)).value= Round(headings[number],2);
+      document.getElementById('id_angle'+(number)).value= Round(headings[number],2);
     if(headings[number]>-180&&headings[number]<0){
      document.getElementById('id_angle'+(number)).value= Round(headings[number]+360,2);
     }
